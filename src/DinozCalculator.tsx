@@ -1281,6 +1281,9 @@ export default function DinozCalculator() {
   const sortedCompositions = Array.from(compositionResults.entries())
     .sort(([,a], [,b]) => b.count - a.count)
     .slice(0, 20); // Top 20 compositions les plus probables
+    const totalResult = Array.from(compositionResults.values()).reduce((sum, val) => sum + val.count, 0)
+    const averageGold = Array.from(compositionResults.values()).reduce((a,b) => a + (b.avgGold * b.count / totalResult), 0)
+    const averageTotalXP = Array.from(compositionResults.values()).reduce((a,b) => a + (b.avgTotalXP * b.count / totalResult), 0)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
@@ -1443,6 +1446,38 @@ export default function DinozCalculator() {
           </div>
         )}
 
+          {/* Gains globaux */}
+          {compositionResults.size > 0 && (
+              <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-6">Gains moyens sur les {totalResult} tirages toutes composition confondues</h2>
+                  <div className="bg-white border-t px-4 py-3">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
+                          <div className="text-center">
+                              <div className="text-sm text-gray-600">Gold moyen</div>
+                              <div className="text-lg font-bold text-yellow-600">
+                                  {averageGold.toLocaleString()}
+                              </div>
+                          </div>
+
+                          <div className="text-center">
+                              <div className="text-sm text-gray-600">XP totale moyenne</div>
+                              <div className="text-lg font-bold text-green-600">
+                                  {averageTotalXP.toLocaleString()}
+                              </div>
+                          </div>
+
+                          <div className="text-center">
+                              <div className="text-sm text-gray-600">XP moyenne/Dinoz</div>
+                              <div className="text-sm font-medium text-green-700">
+                                  {Math.round(averageTotalXP / team.length).toLocaleString()}
+                              </div>
+                          </div>
+                      </div>
+
+
+                  </div>
+              </div>
+          )}
         {/* Résultats de simulation */}
         {compositionResults.size > 0 && (
           <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
