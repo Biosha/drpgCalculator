@@ -7,4 +7,8 @@ export default defineConfig({
   plugins: [
       tailwindcss(),
       react()],
+    build: {
+        outDir: 'docs',
+        emptyOutDir: true, // also necessary
+    }
 })
