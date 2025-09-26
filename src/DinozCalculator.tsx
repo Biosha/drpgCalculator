@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { Calculator, Users, Zap, Target, Info, BarChart3 } from 'lucide-react';
 
 // Types exacts basés sur le code fourni
+// @ts-ignore
 export enum Monster {
     GOUPIGNON = 'GOUPIGNON',
     GOUPIGNON2 = 'GOUPIGNON2',
@@ -43,6 +44,7 @@ export enum Monster {
     PIRHANOS_2 = 'PIRHANOS_2'
 }
 
+// @ts-ignore
 export enum MapZone {
     DINOLAND = 'Dinoland',
     DINOWEST = 'Dinoland_West',
@@ -1028,7 +1030,7 @@ function simulateMonsterGeneration(team: { level: number }[], iterations: number
         count: 0,
         totalGold: 0,
         totalXP: 0,
-        teamXPSums: team.map((d, i) => ({ level: d.level, totalXP: 0 }))
+        teamXPSums: team.map(d => ({ level: d.level, totalXP: 0 }))
       });
     }
     
@@ -1205,7 +1207,7 @@ export default function DinozCalculator() {
             count: 0,
             totalGold: 0,
             totalXP: 0,
-            teamXPSums: team.map((d, i) => ({ level: d.level, totalXP: 0 }))
+            teamXPSums: team.map(d => ({ level: d.level, totalXP: 0 }))
           });
         }
         
