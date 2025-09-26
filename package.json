@@ -1,7 +1,7 @@
 {
   "name": "drpgcalculator",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0",
   "type": "module",
   "homepage": "https://biosha.github.io/drpgCalculator",
   "scripts": {
